@@ -3,8 +3,6 @@ export const prerender = false;
 import type { APIRoute } from "astro";
 import { Resend } from "resend";
 
-const resend = new Resend(import.meta.env.RESEND_API_KEY);
-
 function escapeHtml(text: string): string {
   return text
     .replace(/&/g, "&amp;")
@@ -175,8 +173,20 @@ function buildNotificationEmail(data: {
 </html>`;
 }
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, locals }) => {
   try {
+    const apiKey =
+      (locals as any).runtime?.env?.RESEND_API_KEY ||
+      import.meta.env.RESEND_API_KEY;
+
+    if (!apiKey) {
+      return new Response(
+        JSON.stringify({ error: "Server configuratie ontbreekt." }),
+        { status: 500, headers: { "Content-Type": "application/json" } }
+      );
+    }
+
+    const resend = new Resend(apiKey);
     const body = await request.json();
     const { naam, email, telefoon, onderwerp, adres, bericht } = body;
 

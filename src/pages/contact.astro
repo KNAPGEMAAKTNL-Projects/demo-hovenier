@@ -291,7 +291,13 @@ import contactImage from "../assets/images/tuinontwerp-en-advies.webp";
                 body: JSON.stringify(data),
             });
 
-            const result = await res.json();
+            const text = await res.text();
+            let result;
+            try {
+                result = JSON.parse(text);
+            } catch {
+                throw new Error("Onverwacht serverantwoord. Probeer het later opnieuw.");
+            }
 
             if (!res.ok) {
                 throw new Error(result.error || "Versturen mislukt.");
