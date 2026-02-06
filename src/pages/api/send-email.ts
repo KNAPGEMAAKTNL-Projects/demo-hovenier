@@ -1,7 +1,10 @@
 export const prerender = false;
 
 import type { APIRoute } from "astro";
-import { Resend } from "resend";
+
+interface Env {
+  RESEND_API_KEY?: string;
+}
 
 function escapeHtml(text: string): string {
   return text
@@ -153,7 +156,7 @@ function buildNotificationEmail(data: {
       </tr>
       <tr>
         <td style="padding:8px 16px 8px 0;color:#7a7568;vertical-align:top;white-space:nowrap;">Telefoon</td>
-        <td style="padding:8px 0;">${data.telefoon ? escapeHtml(data.telefoon) : '<span style="color:#7a7568;">—</span>'}</td>
+        <td style="padding:8px 0;">${data.telefoon ? escapeHtml(data.telefoon) : '<span style="color:#7a7568;">\u2014</span>'}</td>
       </tr>
       <tr>
         <td style="padding:8px 16px 8px 0;color:#7a7568;vertical-align:top;white-space:nowrap;">Onderwerp</td>
@@ -161,7 +164,7 @@ function buildNotificationEmail(data: {
       </tr>
       <tr>
         <td style="padding:8px 16px 8px 0;color:#7a7568;vertical-align:top;white-space:nowrap;">Adres</td>
-        <td style="padding:8px 0;">${data.adres ? escapeHtml(data.adres) : '<span style="color:#7a7568;">—</span>'}</td>
+        <td style="padding:8px 0;">${data.adres ? escapeHtml(data.adres) : '<span style="color:#7a7568;">\u2014</span>'}</td>
       </tr>
     </table>
     <div style="margin-top:16px;padding-top:16px;border-top:1px solid #ede6db;">
@@ -173,11 +176,38 @@ function buildNotificationEmail(data: {
 </html>`;
 }
 
+async function sendEmail(
+  apiKey: string,
+  options: { from: string; to: string; replyTo?: string; subject: string; html: string }
+): Promise<boolean> {
+  const res = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify({
+      from: options.from,
+      to: [options.to],
+      ...(options.replyTo && { reply_to: options.replyTo }),
+      subject: options.subject,
+      html: options.html,
+    }),
+  });
+
+  if (!res.ok) {
+    const error = await res.text();
+    console.error("Resend API error:", res.status, error);
+    return false;
+  }
+
+  return true;
+}
+
 export const POST: APIRoute = async ({ request, locals }) => {
   try {
-    const apiKey =
-      (locals as any).runtime?.env?.RESEND_API_KEY ||
-      import.meta.env.RESEND_API_KEY;
+    const env = (locals as any).runtime?.env as Env | undefined;
+    const apiKey = env?.RESEND_API_KEY;
 
     if (!apiKey) {
       return new Response(
@@ -186,7 +216,6 @@ export const POST: APIRoute = async ({ request, locals }) => {
       );
     }
 
-    const resend = new Resend(apiKey);
     const body = await request.json();
     const { naam, email, telefoon, onderwerp, adres, bericht } = body;
 
@@ -206,7 +235,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     }
 
     // Send confirmation email to customer
-    await resend.emails.send({
+    await sendEmail(apiKey, {
       from: "Hoveniersbedrijf De Oude Stad <noreply@knapgemaakt.nl>",
       to: email,
       subject: `Bedankt voor uw aanvraag, ${naam.split(" ")[0]}`,
@@ -214,10 +243,11 @@ export const POST: APIRoute = async ({ request, locals }) => {
     });
 
     // Send notification email to Yannick
-    await resend.emails.send({
+    await sendEmail(apiKey, {
       from: "De Oude Stad Formulier <noreply@knapgemaakt.nl>",
       to: "yannick@knapgemaakt.nl",
-      subject: `Nieuwe aanvraag: ${onderwerp || "Algemeen"} – ${naam}`,
+      replyTo: email,
+      subject: `Nieuwe aanvraag: ${onderwerp || "Algemeen"} \u2013 ${naam}`,
       html: buildNotificationEmail({
         naam,
         email,
