@@ -71,8 +71,9 @@ const links = [
                 <button
                     id="mobile-menu-btn"
                     class="navbar-link p-2 transition-colors duration-300"
+                    aria-label="Menu openen"
                 >
-                    <Menu className="w-6 h-6" />
+                    <Menu className="w-6 h-6" aria-hidden="true" />
                 </button>
             </div>
         </div>
@@ -91,8 +92,9 @@ const links = [
     <button
         id="close-menu-btn"
         class="absolute top-6 right-6 text-dark p-2"
+        aria-label="Menu sluiten"
     >
-        <X className="w-6 h-6" />
+        <X className="w-6 h-6" aria-hidden="true" />
     </button>
 
     <nav class="flex flex-col gap-6">
