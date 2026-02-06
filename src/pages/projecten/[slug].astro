@@ -1,0 +1,207 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../../layouts/Layout.astro";
+import FadeIn from "../../components/ui/FadeIn";
+import { ArrowLeft, Calendar, MapPin, Tag } from "lucide-react";
+
+import gerealiseerdeImage from "../../assets/images/gerealiseerde-tuin.webp";
+import tuinonderhoudImage from "../../assets/images/tuinonderhoud.webp";
+import tuinaanlegImage from "../../assets/images/tuinaanleg.webp";
+import tuinontwerpImage from "../../assets/images/tuinontwerp-en-advies.webp";
+import heroGardenImage from "../../assets/images/hero-garden.webp";
+import veluweImage from "../../assets/images/veluwe.webp";
+
+export async function getStaticPaths() {
+    const projects = [
+        {
+            slug: "stadstuin-aan-de-lek",
+            title: "Stadstuin aan de Lek",
+            location: "Culemborg Centrum",
+            year: "2023",
+            category: "Tuinaanleg & Ontwerp",
+            tags: ["Bestrating", "Verlichting", "Beplanting"],
+            description:
+                "Een moderne stadstuin in het hart van Culemborg. De wens was een onderhoudsvriendelijke tuin met veel groen en privacy. We hebben gekozen voor strakke lijnen gecombineerd met weelderige beplanting.",
+            image: gerealiseerdeImage,
+            gallery: [gerealiseerdeImage, tuinonderhoudImage],
+        },
+        {
+            slug: "landelijke-villa-beusichem",
+            title: "Landelijke Villa Beusichem",
+            location: "Beusichem",
+            year: "2022",
+            category: "Renovatie",
+            tags: ["Zwemvijver", "Oud Hollands", "Gazon"],
+            description:
+                "Renovatie van een klassieke villatuin. De oude elementen zijn behouden en versterkt met nieuwe zichtlijnen en een natuurlijke zwemvijver.",
+            image: tuinonderhoudImage,
+            gallery: [tuinonderhoudImage, gerealiseerdeImage],
+        },
+        {
+            slug: "moderne-patiotuin",
+            title: "Moderne Patiotuin",
+            location: "Culemborg Parijsch",
+            year: "2023",
+            category: "Tuinaanleg",
+            tags: ["Keramiek", "Overkapping", "Privacy"],
+            description:
+                "Klein maar fijn. Deze patiotuin is een verlengstuk van de woonkamer geworden, met grote keramische tegels en een maatwerk overkapping.",
+            image: tuinaanlegImage,
+            gallery: [tuinaanlegImage, veluweImage],
+        },
+        {
+            slug: "bedrijfstuin-culemborg",
+            title: "Bedrijfstuin Culemborg",
+            location: "Industrieterrein Pavijen",
+            year: "2024",
+            category: "Onderhoud & Aanleg",
+            tags: ["Representatief", "Onderhoudsarm", "Entree"],
+            description:
+                "Een representatieve entree voor dit bedrijfspand. Onderhoudsarm maar wel met een groene uitstraling die past bij het duurzame karakter van het bedrijf.",
+            image: tuinontwerpImage,
+            gallery: [tuinontwerpImage, tuinaanlegImage],
+        },
+    ];
+
+    return projects.map((project) => ({
+        params: { slug: project.slug },
+        props: { project },
+    }));
+}
+
+const { project } = Astro.props;
+---
+
+<Layout title={`${project.title} | Projecten De Oude Stad`} heroNav>
+    <main class="bg-cream">
+        {/* Page Header / Hero */}
+        <div class="relative h-[55vh] min-h-[450px] grain">
+            <div class="absolute inset-0">
+                <Image
+                    src={project.image}
+                    alt={`${project.title} - Gerealiseerd tuinproject in ${project.location}`}
+                    class="w-full h-full object-cover"
+                    widths={[640, 960, 1280, 1920]}
+                    sizes="100vw"
+                    loading="eager"
+                    fetchpriority="high"
+                    decoding="async"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-dark/70 via-dark/30 to-dark/10"></div>
+            </div>
+            <div
+                class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-end pb-14"
+            >
+                <FadeIn client:visible>
+                    <a
+                        href="/projecten"
+                        class="inline-flex items-center text-cream/60 hover:text-cream mb-8 transition-colors text-sm tracking-wide uppercase"
+                    >
+                        <ArrowLeft className="w-4 h-4 mr-2" /> Terug naar overzicht
+                    </a>
+                    <span
+                        class="text-accent text-xs tracking-[0.2em] uppercase font-medium mb-3 block"
+                        >{project.category}</span
+                    >
+                    <h1
+                        class="font-serif text-4xl md:text-5xl lg:text-6xl text-cream"
+                    >
+                        {project.title}
+                    </h1>
+                </FadeIn>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-16">
+                {/* Main Content */}
+                <div class="lg:col-span-2">
+                    <FadeIn client:visible delay={0.2}>
+                        <h2 class="font-serif text-2xl text-dark mb-6">
+                            Over dit project
+                        </h2>
+                        <p class="text-lg text-bark leading-relaxed mb-14">
+                            {project.description}
+                        </p>
+
+                        {/* Gallery Grid */}
+                        <div class="flex items-center gap-4 mb-8">
+                            <div class="w-12 h-px bg-accent"></div>
+                            <h3 class="text-accent text-sm tracking-[0.2em] uppercase font-medium">
+                                Impressie
+                            </h3>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {
+                                project.gallery.map((img, i) => (
+                                    <div class="relative group overflow-hidden">
+                                        <Image
+                                            src={img}
+                                            alt={`${project.title} - Impressie ${i + 1}`}
+                                            class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105"
+                                            widths={[480, 768]}
+                                            sizes="(max-width: 768px) 100vw, 50vw"
+                                            loading="lazy"
+                                            decoding="async"
+                                        />
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    </FadeIn>
+                </div>
+
+                {/* Sidebar */}
+                <div class="lg:col-span-1">
+                    <FadeIn client:visible delay={0.4}>
+                        <div
+                            class="bg-white border border-sand p-8 sticky top-24"
+                        >
+                            <h3 class="font-serif text-xl text-dark mb-8">
+                                Projectdetails
+                            </h3>
+
+                            <ul class="space-y-6">
+                                <li class="flex items-center text-bark">
+                                    <MapPin
+                                        className="w-4 h-4 text-accent mr-4"
+                                    />
+                                    <span>{project.location}</span>
+                                </li>
+                                <li class="flex items-center text-bark">
+                                    <Calendar
+                                        className="w-4 h-4 text-accent mr-4"
+                                    />
+                                    <span>Gerealiseerd in {project.year}</span>
+                                </li>
+                                <li class="flex items-start text-bark">
+                                    <Tag
+                                        className="w-4 h-4 text-accent mr-4 mt-0.5"
+                                    />
+                                    <div class="flex flex-wrap gap-2">
+                                        {
+                                            project.tags.map((tag) => (
+                                                <span class="text-xs text-bark border border-sand px-2.5 py-1">
+                                                    {tag}
+                                                </span>
+                                            ))
+                                        }
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <div class="mt-10 pt-10 border-t border-sand">
+                                <a
+                                    href="/contact"
+                                    class="block w-full bg-dark hover:bg-dark/85 text-cream text-center py-4 text-sm tracking-wide uppercase font-medium transition-all"
+                                >
+                                    Ook zo'n tuin?
+                                </a>
+                            </div>
+                        </div>
+                    </FadeIn>
+                </div>
+            </div>
+        </div>
+    </main>
+</Layout>

@@ -1,0 +1,223 @@
+---
+import { Image } from "astro:assets";
+import logoImage from "../assets/images/header-logo-de-oude-stad.webp";
+import { Phone, Menu, X } from "lucide-react";
+
+const links = [
+    { href: "/", label: "Home" },
+    { href: "/diensten", label: "Diensten" },
+    { href: "/projecten", label: "Projecten" },
+    { href: "/over-ons", label: "Over Ons" },
+    { href: "/contact", label: "Contact" },
+];
+---
+
+<header
+    class="fixed w-full z-50 transition-all duration-500"
+    id="navbar"
+    data-state="top"
+>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+            {/* Logo */}
+            <div class="flex-shrink-0 flex items-center">
+                <a href="/" class="block">
+                    <Image
+                        src={logoImage}
+                        alt="De Oude Stad - Hoveniersbedrijf Culemborg"
+                        class="h-12 w-auto navbar-logo transition-all duration-300"
+                        width={240}
+                        height={48}
+                        loading="eager"
+                        fetchpriority="high"
+                        decoding="async"
+                    />
+                </a>
+            </div>
+
+            {/* Desktop Navigation */}
+            <nav class="hidden md:flex items-center gap-10">
+                {
+                    links.map((link) => (
+                        <a
+                            href={link.href}
+                            class="navbar-link text-sm tracking-wide uppercase font-medium transition-colors duration-300 link-underline"
+                        >
+                            {link.label}
+                        </a>
+                    ))
+                }
+            </nav>
+
+            {/* CTA */}
+            <div class="hidden md:flex items-center gap-6">
+                <a
+                    href="tel:0612345678"
+                    class="navbar-link-muted flex items-center font-medium text-sm transition-colors duration-300"
+                >
+                    <Phone className="w-4 h-4 mr-2" />
+                    <span class="hidden lg:inline">06 1234 5678</span>
+                </a>
+                <a
+                    href="/contact"
+                    class="navbar-cta px-6 py-2.5 text-sm tracking-wide uppercase font-medium transition-all duration-300"
+                >
+                    Offerte Aanvragen
+                </a>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <div class="md:hidden flex items-center">
+                <button
+                    id="mobile-menu-btn"
+                    class="navbar-link p-2 transition-colors duration-300"
+                >
+                    <Menu className="w-6 h-6" />
+                </button>
+            </div>
+        </div>
+    </div>
+
+    {/* Thin decorative line */}
+    <div class="navbar-line h-px transition-all duration-500"></div>
+
+</header>
+
+{/* Mobile Menu Overlay - outside header to avoid inheriting header background states */}
+<div
+    id="mobile-menu"
+    class="fixed inset-0 z-50 bg-cream transform translate-x-full transition-transform duration-300 md:hidden flex flex-col pt-24 px-8"
+>
+    <button
+        id="close-menu-btn"
+        class="absolute top-6 right-6 text-dark p-2"
+    >
+        <X className="w-6 h-6" />
+    </button>
+
+    <nav class="flex flex-col gap-6">
+        {
+            links.map((link, i) => (
+                <a
+                    href={link.href}
+                    class="text-3xl font-serif text-dark hover:text-accent transition-colors"
+                    style={`animation-delay: ${i * 0.05}s`}
+                >
+                    {link.label}
+                </a>
+            ))
+        }
+    </nav>
+
+    <div class="mt-auto pb-12 pt-8 border-t border-sand flex flex-col gap-5">
+        <a
+            href="tel:0612345678"
+            class="flex items-center text-lg text-bark"
+        >
+            <Phone className="w-5 h-5 mr-3" />
+            06 1234 5678
+        </a>
+        <a
+            href="/contact"
+            class="bg-dark text-cream text-center py-4 font-medium text-sm tracking-wide uppercase"
+        >
+            Offerte Aanvragen
+        </a>
+    </div>
+</div>
+
+<style>
+    /* --- Transparent state (over hero) --- */
+    header[data-state="top"] {
+        background: linear-gradient(to bottom, rgba(28, 28, 26, 0.7) 0%, rgba(28, 28, 26, 0.4) 70%, rgba(28, 28, 26, 0) 100%);
+    }
+    header[data-state="top"] .navbar-logo {
+        filter: brightness(0) invert(1);
+    }
+    header[data-state="top"] .navbar-link {
+        color: rgba(250, 247, 242, 0.8);
+    }
+    header[data-state="top"] .navbar-link:hover {
+        color: rgba(250, 247, 242, 1);
+    }
+    header[data-state="top"] .navbar-link-muted {
+        color: rgba(250, 247, 242, 0.6);
+    }
+    header[data-state="top"] .navbar-link-muted:hover {
+        color: rgba(250, 247, 242, 1);
+    }
+    header[data-state="top"] .navbar-cta {
+        background: transparent;
+        color: rgba(250, 247, 242, 0.9);
+        border: 1px solid rgba(250, 247, 242, 0.3);
+    }
+    header[data-state="top"] .navbar-cta:hover {
+        border-color: rgba(250, 247, 242, 0.6);
+        color: rgba(250, 247, 242, 1);
+    }
+    header[data-state="top"] .navbar-line {
+        background: rgba(250, 247, 242, 0.1);
+    }
+
+    /* --- Scrolled state (solid background) --- */
+    header[data-state="scrolled"] {
+        background: rgba(250, 247, 242, 0.97);
+        backdrop-filter: blur(8px);
+    }
+    header[data-state="scrolled"] .navbar-logo {
+        filter: none;
+    }
+    header[data-state="scrolled"] .navbar-link {
+        color: rgba(28, 28, 26, 0.7);
+    }
+    header[data-state="scrolled"] .navbar-link:hover {
+        color: rgba(28, 28, 26, 1);
+    }
+    header[data-state="scrolled"] .navbar-link-muted {
+        color: var(--color-bark);
+    }
+    header[data-state="scrolled"] .navbar-link-muted:hover {
+        color: rgba(28, 28, 26, 1);
+    }
+    header[data-state="scrolled"] .navbar-cta {
+        background: var(--color-dark);
+        color: var(--color-cream);
+        border: 1px solid transparent;
+    }
+    header[data-state="scrolled"] .navbar-cta:hover {
+        background: rgba(28, 28, 26, 0.85);
+    }
+    header[data-state="scrolled"] .navbar-line {
+        background: rgba(28, 28, 26, 0.1);
+    }
+</style>
+
+<script>
+    const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+    const closeMenuBtn = document.getElementById("close-menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const navbar = document.getElementById("navbar");
+
+    function toggleMenu() {
+        mobileMenu?.classList.toggle("translate-x-full");
+        document.body.classList.toggle("overflow-hidden");
+    }
+
+    mobileMenuBtn?.addEventListener("click", toggleMenu);
+    closeMenuBtn?.addEventListener("click", toggleMenu);
+
+    const hasHeroNav = document.body.dataset.heroNav === "true";
+
+    function updateNavbar() {
+        if (!navbar) return;
+        if (!hasHeroNav) {
+            navbar.dataset.state = "scrolled";
+            return;
+        }
+        const scrolled = window.scrollY > 60;
+        navbar.dataset.state = scrolled ? "scrolled" : "top";
+    }
+
+    window.addEventListener("scroll", updateNavbar, { passive: true });
+    updateNavbar();
+</script>

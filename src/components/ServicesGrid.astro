@@ -1,0 +1,80 @@
+---
+import FadeIn from "./ui/FadeIn";
+
+const services = [
+    {
+        number: "01",
+        title: "Tuinontwerp",
+        description:
+            "Een tijdloos ontwerp dat past bij uw woning en leefstijl. Van eerste schets tot volledig beplantingsplan.",
+        link: "/diensten#ontwerp",
+    },
+    {
+        number: "02",
+        title: "Tuinaanleg",
+        description:
+            "Vakkundige realisatie met oog voor detail. Bestrating, veranda's, vijvers en alles daartussenin.",
+        link: "/diensten#aanleg",
+    },
+    {
+        number: "03",
+        title: "Tuinonderhoud",
+        description:
+            "Zorgeloos genieten van een groene tuin. Snoeien, bemesten en seizoensonderhoud door vakmensen.",
+        link: "/diensten#onderhoud",
+    },
+];
+---
+
+<section class="py-24 md:py-32 bg-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section header - left aligned with accent line */}
+        <div class="mb-20 max-w-2xl">
+            <FadeIn client:visible delay={0.1}>
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-12 h-px bg-accent"></div>
+                    <span class="text-accent text-sm tracking-[0.2em] uppercase font-medium">Wat wij doen</span>
+                </div>
+                <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl text-dark mb-6">
+                    Specialist in Groen<span class="text-accent">.</span>
+                </h2>
+                <p class="text-bark text-lg leading-relaxed">
+                    Wij combineren vakmanschap met creativiteit voor een tuin
+                    die bij u past.
+                </p>
+            </FadeIn>
+        </div>
+
+        {/* Services - editorial layout with large numbers */}
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-sand">
+            {
+                services.map((service, index) => (
+                    <FadeIn client:visible delay={index * 0.15 + 0.2} fullWidth>
+                        <a
+                            href={service.link}
+                            class={`group block py-10 md:py-14 md:px-8 ${index < 2 ? 'border-b md:border-b-0 md:border-r border-sand' : ''} transition-colors duration-300 hover:bg-sand/40`}
+                        >
+                            {/* Large editorial number */}
+                            <span class="font-serif text-6xl md:text-7xl text-sand group-hover:text-accent/30 transition-colors duration-500 block mb-6 leading-none">
+                                {service.number}
+                            </span>
+
+                            <h3 class="font-serif text-2xl md:text-3xl text-dark mb-4 group-hover:text-primary transition-colors">
+                                {service.title}
+                            </h3>
+
+                            <p class="text-bark leading-relaxed mb-8">
+                                {service.description}
+                            </p>
+
+                            <span class="text-dark text-sm tracking-wide uppercase font-medium inline-flex items-center gap-2 group-hover:text-accent transition-colors">
+                                Meer info
+                                <span class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span>
+                            </span>
+                        </a>
+                    </FadeIn>
+                ))
+            }
+        </div>
+    </div>
+</section>

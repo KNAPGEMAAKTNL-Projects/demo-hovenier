@@ -1,0 +1,95 @@
+---
+import { Image } from "astro:assets";
+import heroImage from "../assets/images/hero-garden.webp";
+---
+
+<section
+    class="relative min-h-screen flex items-end overflow-hidden grain"
+>
+    {/* Background Image Layer */}
+    <div class="absolute inset-0 z-0">
+        <Image
+            src={heroImage}
+            alt="Zonnige moderne tuin met weelderige beplanting in Culemborg"
+            class="w-full h-full object-cover object-center"
+            widths={[640, 960, 1280, 1920]}
+            sizes="100vw"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+        />
+        {/* Warm dark overlay with gradient - heavier at bottom for text readability */}
+        <div class="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/30 to-dark/10"></div>
+        {/* Warm color tint */}
+        <div class="absolute inset-0 bg-accent/5 mix-blend-multiply"></div>
+    </div>
+
+    {/* Content Layer - LEFT aligned, bottom positioned */}
+    <div
+        class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-20 md:pb-28 pt-40"
+    >
+        <div class="max-w-3xl">
+            {/* Small label above heading */}
+            <p
+                class="text-accent text-sm tracking-[0.3em] uppercase font-medium mb-6 opacity-0 animate-fade-in-up"
+                style="animation-delay: 0.1s; animation-fill-mode: forwards;"
+            >
+                Hoveniersbedrijf Culemborg
+            </p>
+
+            <h1
+                class="font-serif text-5xl md:text-6xl lg:text-8xl text-cream mb-8 leading-[1.05] opacity-0 animate-fade-in-up"
+                style="animation-delay: 0.25s; animation-fill-mode: forwards;"
+            >
+                Uw Droomtuin,<br />
+                Vakkundig<br />
+                Aangelegd<span class="text-accent">.</span>
+            </h1>
+
+            <p
+                class="text-lg md:text-xl text-cream/75 mb-12 max-w-xl leading-relaxed font-light opacity-0 animate-fade-in-up"
+                style="animation-delay: 0.45s; animation-fill-mode: forwards;"
+            >
+                Van ontwerp tot onderhoud. Wij realiseren tuinen waar u elk seizoen
+                van geniet.
+            </p>
+
+            <div
+                class="flex flex-col sm:flex-row items-start gap-4 opacity-0 animate-fade-in-up"
+                style="animation-delay: 0.6s; animation-fill-mode: forwards;"
+            >
+                <a
+                    href="/contact"
+                    class="bg-accent hover:bg-accent/85 text-cream px-8 py-4 text-sm tracking-wide uppercase font-medium transition-all"
+                >
+                    Vrijblijvende Offerte
+                </a>
+                <a
+                    href="/projecten"
+                    class="text-cream/80 hover:text-cream px-8 py-4 text-sm tracking-wide uppercase font-medium transition-all border border-cream/25 hover:border-cream/50"
+                >
+                    Bekijk Projecten &rarr;
+                </a>
+            </div>
+        </div>
+
+        {/* Decorative bottom line with scroll hint */}
+        <div class="hidden md:flex items-center gap-6 mt-20 opacity-0 animate-fade-in-up" style="animation-delay: 0.8s; animation-fill-mode: forwards;">
+            <div class="w-12 h-px bg-cream/30"></div>
+            <span class="text-cream/40 text-xs tracking-[0.2em] uppercase">Scroll</span>
+        </div>
+    </div>
+</section>
+
+<style>
+    @keyframes fade-in-up {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>

@@ -1,0 +1,110 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import FadeIn from "../components/ui/FadeIn";
+
+import gerealiseerdeImage from "../assets/images/gerealiseerde-tuin.webp";
+import tuinonderhoudImage from "../assets/images/tuinonderhoud.webp";
+import tuinaanlegImage from "../assets/images/tuinaanleg.webp";
+import tuinontwerpImage from "../assets/images/tuinontwerp-en-advies.webp";
+
+const projects = [
+    {
+        title: "Stadstuin aan de Lek",
+        slug: "stadstuin-aan-de-lek",
+        category: "Tuinaanleg & Ontwerp",
+        image: gerealiseerdeImage,
+        link: "/projecten/stadstuin-aan-de-lek",
+        tags: ["Bestrating", "Verlichting", "Beplanting"],
+    },
+    {
+        title: "Landelijke Villa Beusichem",
+        slug: "landelijke-villa-beusichem",
+        category: "Renovatie",
+        image: tuinonderhoudImage,
+        link: "/projecten/landelijke-villa-beusichem",
+        tags: ["Zwemvijver", "Oud Hollands", "Gazon"],
+    },
+    {
+        title: "Moderne Patiotuin",
+        slug: "moderne-patiotuin",
+        category: "Tuinaanleg",
+        image: tuinaanlegImage,
+        link: "/projecten/moderne-patiotuin",
+        tags: ["Keramiek", "Overkapping", "Privacy"],
+    },
+    {
+        title: "Bedrijfstuin Culemborg",
+        slug: "bedrijfstuin-culemborg",
+        category: "Onderhoud & Aanleg",
+        image: tuinontwerpImage,
+        link: "/projecten/bedrijfstuin-culemborg",
+        tags: ["Representatief", "Onderhoudsarm", "Entree"],
+    },
+];
+---
+
+<Layout title="Projecten | Hoveniersbedrijf De Oude Stad">
+    <main>
+        {/* Page Header */}
+        <section class="bg-cream pt-36 pb-16 border-b border-sand">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <FadeIn client:visible delay={0.1}>
+                    <div class="max-w-2xl">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-px bg-accent"></div>
+                            <span class="text-accent text-sm tracking-[0.2em] uppercase font-medium">Portfolio</span>
+                        </div>
+                        <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl text-dark mb-6">
+                            Onze Projecten<span class="text-accent">.</span>
+                        </h1>
+                        <p class="text-lg text-bark leading-relaxed">
+                            Een selectie van gerealiseerde tuinen in Culemborg en
+                            omgeving. Van strak modern tot weelderig landelijk.
+                        </p>
+                    </div>
+                </FadeIn>
+            </div>
+        </section>
+
+        {/* Project Grid */}
+        <section class="py-20 md:py-28 bg-cream">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                    {
+                        projects.map((project, index) => (
+                            <FadeIn
+                                client:visible
+                                delay={index * 0.1}
+                                fullWidth
+                            >
+                                <ProjectCard {...project} />
+                            </FadeIn>
+                        ))
+                    }
+                </div>
+            </div>
+        </section>
+
+        {/* CTA Section */}
+        <section class="bg-primary grain py-20 md:py-28 relative z-10">
+            <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+                <FadeIn client:visible direction="up">
+                    <p class="text-sage text-sm tracking-[0.2em] uppercase font-medium mb-6">Geïnspireerd?</p>
+                    <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl text-cream mb-6">
+                        Geïnspireerd geraakt<span class="text-accent">?</span>
+                    </h2>
+                    <p class="text-cream/60 text-lg mb-10">
+                        Laten we kijken wat we voor uw tuin kunnen betekenen.
+                    </p>
+                    <a
+                        href="/contact"
+                        class="inline-block bg-accent hover:bg-accent/85 text-cream px-10 py-4 text-sm tracking-wide uppercase font-medium transition-all"
+                    >
+                        Plan een Kennismaking
+                    </a>
+                </FadeIn>
+            </div>
+        </section>
+    </main>
+</Layout>

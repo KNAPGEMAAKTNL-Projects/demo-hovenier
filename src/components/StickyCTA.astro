@@ -1,0 +1,24 @@
+---
+import { MessageCircle, Phone } from "lucide-react";
+---
+
+<div class="fixed bottom-6 right-6 z-40 flex flex-col gap-3 md:hidden">
+    {/* WhatsApp Button */}
+    <a
+        href="https://wa.me/31612345678"
+        target="_blank"
+        class="bg-[#25D366] text-white w-14 h-14 flex items-center justify-center shadow-lg transition-transform hover:scale-105"
+        aria-label="WhatsApp ons"
+    >
+        <MessageCircle className="w-6 h-6 fill-current" />
+    </a>
+
+    {/* Phone Button */}
+    <a
+        href="tel:0612345678"
+        class="bg-accent text-cream w-14 h-14 flex items-center justify-center shadow-lg transition-transform hover:scale-105"
+        aria-label="Bel ons direct"
+    >
+        <Phone className="w-6 h-6 fill-current" />
+    </a>
+</div>

@@ -1,0 +1,42 @@
+---
+import "../styles/global.css";
+import "@fontsource/dm-serif-display/400.css";
+import "@fontsource/outfit/300.css";
+import "@fontsource/outfit/400.css";
+import "@fontsource/outfit/500.css";
+import "@fontsource/outfit/600.css";
+import "@fontsource/outfit/700.css";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import StickyCTA from "../components/StickyCTA.astro";
+
+interface Props {
+    title: string;
+    description?: string;
+    heroNav?: boolean;
+}
+
+const {
+    title,
+    description = "Hoveniersbedrijf De Oude Stad - Uw specialist voor tuinaanleg en onderhoud in Culemborg.",
+    heroNav = false,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="nl">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/png" href="/images/favicon-de-oude-stad.png" />
+        <meta name="generator" content={Astro.generator} />
+        <meta name="description" content={description} />
+        <title>{title}</title>
+    </head>
+    <body class="font-sans antialiased text-dark bg-cream" data-hero-nav={heroNav ? "true" : "false"}>
+        <Navbar />
+        <slot />
+        <Footer />
+        <StickyCTA />
+    </body>
+</html>

@@ -1,0 +1,138 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import FadeIn from "../components/ui/FadeIn";
+import overOnsImage from "../assets/images/veluwe.webp";
+
+const values = [
+    {
+        title: "Vakmanschap",
+        desc: "Wij werken uitsluitend met gediplomeerde hoveniers en hoogwaardige materialen.",
+    },
+    {
+        title: "Persoonlijk",
+        desc: "Eén aanspreekpunt voor uw hele project. Korte lijnen, heldere communicatie.",
+    },
+    {
+        title: "Duurzaam",
+        desc: "Wij bouwen tuinen voor de toekomst, met oog voor biodiversiteit en waterbeheer.",
+    },
+];
+---
+
+<Layout title="Over Ons | Hoveniersbedrijf De Oude Stad">
+    <main>
+        {/* Header */}
+        <section class="bg-cream pt-36 pb-16 border-b border-sand">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <FadeIn client:visible>
+                    <div class="max-w-2xl">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-px bg-accent"></div>
+                            <span class="text-accent text-sm tracking-[0.2em] uppercase font-medium">Over Ons</span>
+                        </div>
+                        <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl text-dark mb-6">
+                            Even Voorstellen<span class="text-accent">.</span>
+                        </h1>
+                        <p class="text-lg text-bark leading-relaxed">
+                            Het gezicht achter de tuinen. Passie voor groen, hart
+                            voor kwaliteit.
+                        </p>
+                    </div>
+                </FadeIn>
+            </div>
+        </section>
+
+        {/* Full-width image band */}
+        <section class="relative">
+            <FadeIn client:visible delay={0.1}>
+                <div class="relative overflow-hidden">
+                    <Image
+                        src={overOnsImage}
+                        alt="Het team van Hoveniersbedrijf De Oude Stad aan het werk in een tuin"
+                        class="w-full h-[300px] md:h-[400px] object-cover"
+                        widths={[640, 960, 1280, 1920]}
+                        sizes="100vw"
+                        loading="lazy"
+                        decoding="async"
+                    />
+                </div>
+            </FadeIn>
+        </section>
+
+        {/* Story Section */}
+        <section class="py-20 md:py-28 bg-cream">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto">
+                    <FadeIn client:visible delay={0.2}>
+                        <h2 class="font-serif text-3xl md:text-4xl text-dark mb-10">
+                            Van Passie naar Professie
+                        </h2>
+                        <div class="text-bark text-lg leading-relaxed space-y-6 mb-16">
+                            <p>
+                                Hoveniersbedrijf De Oude Stad begon met een
+                                simpele missie:
+                                <strong class="text-dark">Kwaliteit terugbrengen in de tuin.</strong>
+                            </p>
+                            <p>
+                                In een wereld waar alles sneller moet, nemen
+                                wij de tijd. Tijd voor een goed ontwerp,
+                                tijd voor de juiste materiaalkeuze, en tijd
+                                voor perfecte afwerking.
+                            </p>
+                            <p>
+                                Of het nu gaat om een stadstuin in het
+                                historische centrum van Culemborg of een
+                                landelijke villa in de Betuwe; wij benaderen
+                                elk project met dezelfde toewijding.
+                            </p>
+                        </div>
+                    </FadeIn>
+
+                    {/* Values */}
+                    <FadeIn client:visible delay={0.3}>
+                        <div class="border-t border-sand pt-14">
+                            <div class="flex items-center gap-4 mb-10">
+                                <div class="w-12 h-px bg-accent"></div>
+                                <span class="text-accent text-sm tracking-[0.2em] uppercase font-medium">Onze Waarden</span>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                                {
+                                    values.map((value) => (
+                                        <div>
+                                            <div class="w-2 h-2 bg-accent mb-5"></div>
+                                            <h4 class="font-serif text-xl text-dark mb-3">
+                                                {value.title}
+                                            </h4>
+                                            <p class="text-bark leading-relaxed">
+                                                {value.desc}
+                                            </p>
+                                        </div>
+                                    ))
+                                }
+                            </div>
+                        </div>
+                    </FadeIn>
+                </div>
+            </div>
+        </section>
+
+        {/* CTA */}
+        <section class="bg-primary grain py-20 md:py-24 relative z-10">
+            <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+                <FadeIn client:visible>
+                    <p class="text-sage text-sm tracking-[0.2em] uppercase font-medium mb-6">Aan de slag</p>
+                    <h2 class="font-serif text-3xl md:text-4xl text-cream mb-8">
+                        Benieuwd wat wij voor u kunnen betekenen<span class="text-accent">?</span>
+                    </h2>
+                    <a
+                        href="/contact"
+                        class="inline-block bg-accent hover:bg-accent/85 text-cream px-10 py-4 text-sm tracking-wide uppercase font-medium transition-all"
+                    >
+                        Neem Contact Op
+                    </a>
+                </FadeIn>
+            </div>
+        </section>
+    </main>
+</Layout>
