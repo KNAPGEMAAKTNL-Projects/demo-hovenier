@@ -1,75 +1,68 @@
 ---
 import FadeIn from "./ui/FadeIn";
+import { PenTool, Hammer, Scissors } from "lucide-react";
 
 const services = [
     {
-        number: "01",
         title: "Tuinontwerp",
         description:
-            "Een tijdloos ontwerp dat past bij uw woning en leefstijl. Van eerste schets tot volledig beplantingsplan.",
+            "Een doordacht ontwerp dat past bij uw woning en leefstijl. Van eerste schets tot volledig beplantingsplan.",
         link: "/diensten/#ontwerp",
+        icon: PenTool,
     },
     {
-        number: "02",
         title: "Tuinaanleg",
         description:
-            "Vakkundige realisatie met oog voor detail. Bestrating, veranda's, vijvers en alles daartussenin.",
+            "Vakkundige realisatie met oog voor detail. Bestrating, overkappingen, vijvers en alles daartussenin.",
         link: "/diensten/#aanleg",
+        icon: Hammer,
     },
     {
-        number: "03",
         title: "Tuinonderhoud",
         description:
-            "Zorgeloos genieten van een groene tuin. Snoeien, bemesten en seizoensonderhoud door vakmensen.",
+            "Zorgeloos genieten van een verzorgde tuin. Snoeien, bemesten en seizoensonderhoud door vakmensen.",
         link: "/diensten/#onderhoud",
+        icon: Scissors,
     },
 ];
 ---
 
-<section class="py-24 md:py-32 bg-cream">
+<section class="py-20 md:py-28 bg-gray">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section header - left aligned with accent line */}
-        <div class="mb-20 max-w-2xl">
-            <FadeIn client:visible delay={0.1}>
-                <div class="flex items-center gap-4 mb-6">
-                    <div class="w-12 h-px bg-accent"></div>
-                    <span class="text-accent text-sm tracking-[0.2em] uppercase font-medium">Wat wij doen</span>
-                </div>
-                <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl text-dark mb-6">
-                    Specialist in Groen<span class="text-accent">.</span>
-                </h2>
-                <p class="text-bark text-lg leading-relaxed">
-                    Wij combineren vakmanschap met creativiteit voor een tuin
-                    die bij u past.
-                </p>
-            </FadeIn>
+        {/* Section header - centered */}
+        <div class="text-center">
+            <span class="text-primary text-sm font-medium tracking-wide uppercase">Wat wij doen</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-dark mt-3">
+                Onze Diensten
+            </h2>
+            <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+                Wij combineren vakmanschap met creativiteit voor een tuin die bij u past.
+            </p>
         </div>
 
-        {/* Services - editorial layout with large numbers */}
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-sand">
+        {/* 3-column icon card grid */}
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
             {
                 services.map((service, index) => (
-                    <FadeIn client:visible delay={index * 0.15 + 0.2} fullWidth>
+                    <FadeIn client:visible delay={index * 0.15 + 0.2}>
                         <a
                             href={service.link}
-                            class={`group block py-10 md:py-14 md:px-8 ${index < 2 ? 'border-b md:border-b-0 md:border-r border-sand' : ''} transition-colors duration-300 hover:bg-sand/40`}
+                            class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 p-8 cursor-pointer block h-full"
                         >
-                            {/* Large editorial number */}
-                            <span class="font-serif text-6xl md:text-7xl text-sand group-hover:text-accent/30 transition-colors duration-500 block mb-6 leading-none">
-                                {service.number}
-                            </span>
+                            <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                                <service.icon className="text-primary w-7 h-7" />
+                            </div>
 
-                            <h3 class="font-serif text-2xl md:text-3xl text-dark mb-4 group-hover:text-primary transition-colors">
+                            <h3 class="text-xl font-bold text-dark mb-3">
                                 {service.title}
                             </h3>
 
-                            <p class="text-bark leading-relaxed mb-8">
+                            <p class="text-gray-600 leading-relaxed mb-6">
                                 {service.description}
                             </p>
 
-                            <span class="text-dark text-sm tracking-wide uppercase font-medium inline-flex items-center gap-2 group-hover:text-accent transition-colors">
-                                Meer info
-                                <span class="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span>
+                            <span class="text-primary font-medium text-sm inline-flex items-center gap-2">
+                                Meer info &rarr;
                             </span>
                         </a>
                     </FadeIn>
