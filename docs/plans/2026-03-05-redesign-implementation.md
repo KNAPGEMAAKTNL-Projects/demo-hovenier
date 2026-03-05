@@ -521,7 +521,9 @@ git commit -m "chore: clean up old brand references and unused components"
 
 ---
 
-### Task 18: Visual QA and final adjustments
+### Task 18: Visual QA and final adjustments (UI/UX Pro Max checklist)
+
+Reference: `design-system/groenrijk-hoveniers/MASTER.md`
 
 **Step 1: Run dev server**
 
@@ -529,39 +531,82 @@ git commit -m "chore: clean up old brand references and unused components"
 npm run dev
 ```
 
-**Step 2: Test all pages on mobile viewport (375px wide)**
+**Step 2: UI/UX Pro Max Pre-Delivery Checklist**
 
-Check each page: /, /diensten/, /projecten/, /projecten/stadstuin-aan-de-lek/, /over-ons/, /contact/
+Run through each page (/, /diensten/, /projecten/, /projecten/stadstuin-aan-de-lek/, /over-ons/, /contact/) and verify:
 
-Verify:
-- Demo banner visible and readable
-- Navbar: logo, hamburger menu, phone icon
-- All content readable, no horizontal overflow
-- CTAs are tappable size (min 44px)
-- Images load and display correctly
-- Sticky CTA buttons visible
-- Contact form works
+**Visual Quality:**
+- [ ] No emojis used as icons (use SVG: Lucide icons)
+- [ ] All icons from consistent set (lucide-react)
+- [ ] Hover states don't cause layout shift
+- [ ] Use theme colors directly (bg-primary) not var() wrappers in Tailwind
+
+**Interaction (CRITICAL):**
+- [ ] All clickable elements have `cursor-pointer`
+- [ ] All buttons/links min 44x44px touch targets (`min-h-[44px] min-w-[44px]`)
+- [ ] Minimum 8px gap between adjacent touch targets (`gap-2` minimum)
+- [ ] Hover states with smooth transitions (150-300ms, `transition-colors duration-200`)
+- [ ] Form submit button disabled during async operations
+- [ ] `touch-action: manipulation` on interactive elements to remove 300ms tap delay
+
+**Accessibility (CRITICAL):**
+- [ ] Color contrast 4.5:1 minimum for all text (test primary green on white)
+- [ ] Focus states visible for keyboard navigation (focus rings)
+- [ ] All images have descriptive alt text
+- [ ] aria-labels on icon-only buttons (hamburger, phone, WhatsApp)
+- [ ] Form inputs have proper `<label>` elements (not placeholder-only)
+- [ ] Tab order matches visual order
+- [ ] `prefers-reduced-motion` respected — wrap Framer Motion in reduced motion check
+
+**Layout & Responsive:**
+- [ ] Test at 375px, 768px, 1024px, 1440px
+- [ ] No horizontal scroll on any viewport
+- [ ] Content not hidden behind fixed navbar (account for banner + navbar height)
+- [ ] Consistent max-w-7xl containers across pages
+- [ ] Readable font size: minimum 16px body text on mobile
+- [ ] Line height 1.5-1.75 for body text
+- [ ] Line length max 65-75 characters
+
+**Cards & Components (consistency):**
+- [ ] All cards use `rounded-2xl shadow-lg p-6` consistently
+- [ ] Internal card spacing uses `space-y-4`
+- [ ] All buttons use consistent sizing: `px-6 py-3`
+- [ ] CTA buttons same style across all pages
+
+**Performance:**
+- [ ] All non-hero images use `loading="lazy"`
+- [ ] Hero image uses `loading="eager"` + `fetchpriority="high"`
+- [ ] WebP images with srcset for responsive sizes
+- [ ] Reserve space for images (aspect ratios) to prevent content jumping
+
+**Step 3: Test mobile viewport (375px)**
+
+Check each page specifically for:
+- Demo banner readable (text doesn't overflow)
+- Navbar: logo, hamburger menu, phone icon all visible
+- Sticky CTA buttons visible and tappable
+- Contact form works end-to-end
 - Footer columns stack properly
+- Review cards scroll horizontally
 
-**Step 3: Test desktop viewport (1440px)**
+**Step 4: Test desktop viewport (1440px)**
 
-Same pages, verify:
 - Demo banner centered
-- Navbar: all links visible, phone button
+- Navbar: all links visible, phone button with number
 - Grids show correct column counts
 - No excessive whitespace or cramped sections
 
-**Step 4: Run build to verify no errors**
+**Step 5: Run build to verify no errors**
 
 ```bash
 npm run build
 ```
 
-**Step 5: Fix any issues found, commit**
+**Step 6: Fix any issues found, commit**
 
 ```bash
 git add -A
-git commit -m "fix: visual QA adjustments"
+git commit -m "fix: visual QA adjustments per UI/UX Pro Max checklist"
 ```
 
 ---
