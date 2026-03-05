@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import "@fontsource-variable/plus-jakarta-sans";
+import DemoBanner from "../components/DemoBanner.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import StickyCTA from "../components/StickyCTA.astro";
@@ -28,6 +29,7 @@ const {
         <title>{title}</title>
     </head>
     <body class="font-sans antialiased text-dark bg-white">
+        <DemoBanner />
         <Navbar />
         <slot />
         <Footer />
