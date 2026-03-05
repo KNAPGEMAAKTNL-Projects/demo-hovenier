@@ -98,7 +98,7 @@ function buildConfirmationEmail(data: {
             <td style="padding-bottom:32px;">
               <p style="margin:0;font-size:15px;line-height:1.6;color:#7a7568;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
                 Met vriendelijke groet,<br>
-                <strong style="color:#1c1c1a;">Hoveniersbedrijf De Oude Stad</strong><br>
+                <strong style="color:#1c1c1a;">Groenrijk Hoveniers</strong><br>
                 <span style="font-size:13px;">Culemborg en omstreken</span>
               </p>
             </td>
@@ -236,7 +236,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
     // Send confirmation email to customer
     await sendEmail(apiKey, {
-      from: "Hoveniersbedrijf De Oude Stad <noreply@knapgemaakt.nl>",
+      from: "Groenrijk Hoveniers <noreply@knapgemaakt.nl>",
       to: email,
       subject: `Bedankt voor uw aanvraag, ${naam.split(" ")[0]}`,
       html: buildConfirmationEmail({ naam, onderwerp: onderwerp || "uw tuin" }),
@@ -244,7 +244,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
     // Send notification email to Yannick
     await sendEmail(apiKey, {
-      from: "De Oude Stad Formulier <noreply@knapgemaakt.nl>",
+      from: "Groenrijk Formulier <noreply@knapgemaakt.nl>",
       to: "yannick@knapgemaakt.nl",
       replyTo: email,
       subject: `Nieuwe aanvraag: ${onderwerp || "Algemeen"} \u2013 ${naam}`,
