@@ -16,7 +16,7 @@ const links = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16 md:h-20">
             {/* Logo */}
-            <a href="/" class="flex items-center">
+            <a href="/" class="flex items-center hover:opacity-80 transition-opacity">
                 <span class="text-primary font-bold text-xl">Groenrijk</span>
                 <span class="text-dark font-normal text-xl">&nbsp;Hoveniers</span>
             </a>
@@ -48,14 +48,14 @@ const links = [
             <div class="md:hidden flex items-center gap-3">
                 <a
                     href="tel:0612345678"
-                    class="flex items-center justify-center rounded-full bg-primary text-white w-10 h-10"
+                    class="flex items-center justify-center rounded-full bg-primary text-white w-10 h-10 hover:bg-primary-light active:scale-95 transition-all"
                     aria-label="Bel ons"
                 >
                     <Phone className="w-4 h-4" />
                 </a>
                 <button
                     id="mobile-menu-btn"
-                    class="p-2 text-dark"
+                    class="p-2 text-dark hover:text-primary active:scale-95 transition-colors"
                     aria-label="Menu openen"
                 >
                     <Menu className="w-6 h-6" aria-hidden="true" />
@@ -78,7 +78,7 @@ const links = [
         </a>
         <button
             id="close-menu-btn"
-            class="p-2 text-dark"
+            class="p-2 text-dark hover:text-primary active:scale-95 transition-colors"
             aria-label="Menu sluiten"
         >
             <X className="w-6 h-6" aria-hidden="true" />
@@ -103,7 +103,7 @@ const links = [
     <div class="mt-auto px-8 pb-12 pt-8 flex flex-col gap-5">
         <a
             href="tel:0612345678"
-            class="flex items-center text-lg text-dark"
+            class="flex items-center text-lg text-dark hover:text-primary transition-colors"
         >
             <Phone className="w-5 h-5 mr-3" />
             06-1234 5678

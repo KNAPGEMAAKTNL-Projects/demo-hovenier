@@ -18,6 +18,17 @@ body {
   scroll-behavior: smooth;
 }
 
+/* Global keyboard focus indicator */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Remove focus outline for mouse users */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
 /* Smooth link underline animation */
 .link-underline {
   position: relative;
