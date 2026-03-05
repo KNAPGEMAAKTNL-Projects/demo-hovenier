@@ -16,6 +16,7 @@ const projects = [
         image: gerealiseerdeImage,
         link: "/projecten/stadstuin-aan-de-lek/",
         tags: ["Bestrating", "Verlichting", "Beplanting"],
+        description: "Moderne stadstuin met strakke lijnen en weelderig groen, gerealiseerd door Groenrijk Hoveniers.",
     },
     {
         title: "Landelijke Villa Beusichem",
@@ -24,6 +25,7 @@ const projects = [
         image: tuinonderhoudImage,
         link: "/projecten/landelijke-villa-beusichem/",
         tags: ["Zwemvijver", "Oud Hollands", "Gazon"],
+        description: "Klassieke villatuin gerenoveerd met nieuwe zichtlijnen en een natuurlijke zwemvijver.",
     },
     {
         title: "Moderne Patiotuin",
@@ -32,6 +34,7 @@ const projects = [
         image: tuinaanlegImage,
         link: "/projecten/moderne-patiotuin/",
         tags: ["Keramiek", "Overkapping", "Privacy"],
+        description: "Compacte patiotuin als verlengstuk van de woonkamer, ontworpen door Groenrijk.",
     },
     {
         title: "Bedrijfstuin Culemborg",
@@ -40,27 +43,24 @@ const projects = [
         image: tuinontwerpImage,
         link: "/projecten/bedrijfstuin-culemborg/",
         tags: ["Representatief", "Onderhoudsarm", "Entree"],
+        description: "Representatieve bedrijfsentree met duurzame groene uitstraling door Groenrijk Hoveniers.",
     },
 ];
 ---
 
-<Layout title="Projecten | Hoveniersbedrijf De Oude Stad">
+<Layout title="Projecten | Groenrijk Hoveniers">
     <main>
         {/* Page Header */}
-        <section class="bg-cream pt-36 pb-16 border-b border-sand">
+        <section class="bg-white py-20 md:py-28 pt-28 md:pt-36">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <FadeIn client:visible delay={0.1}>
                     <div class="max-w-2xl">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="w-12 h-px bg-accent"></div>
-                            <span class="text-accent text-sm tracking-[0.2em] uppercase font-medium">Portfolio</span>
-                        </div>
-                        <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl text-dark mb-6">
-                            Onze Projecten<span class="text-accent">.</span>
+                        <span class="text-primary text-sm font-medium tracking-wide uppercase">Ons werk</span>
+                        <h1 class="text-4xl md:text-5xl font-bold text-dark mt-3">
+                            Onze Projecten
                         </h1>
-                        <p class="text-lg text-bark leading-relaxed">
-                            Een selectie van gerealiseerde tuinen in Culemborg en
-                            omgeving. Van strak modern tot weelderig landelijk.
+                        <p class="text-gray-600 mt-4 max-w-2xl">
+                            Van stadstuin tot landelijke tuin — bekijk een selectie van onze gerealiseerde projecten.
                         </p>
                     </div>
                 </FadeIn>
@@ -68,9 +68,9 @@ const projects = [
         </section>
 
         {/* Project Grid */}
-        <section class="py-20 md:py-28 bg-cream">
+        <section class="pb-20 md:pb-28 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
                     {
                         projects.map((project, index) => (
                             <FadeIn
@@ -86,24 +86,25 @@ const projects = [
             </div>
         </section>
 
-        {/* CTA Section */}
-        <section class="bg-primary grain py-20 md:py-28 relative z-10">
-            <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
-                <FadeIn client:visible direction="up">
-                    <p class="text-sage text-sm tracking-[0.2em] uppercase font-medium mb-6">Geïnspireerd?</p>
-                    <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl text-cream mb-6">
-                        Geïnspireerd geraakt<span class="text-accent">?</span>
-                    </h2>
-                    <p class="text-cream/60 text-lg mb-10">
-                        Laten we kijken wat we voor uw tuin kunnen betekenen.
-                    </p>
-                    <a
-                        href="/contact/"
-                        class="inline-block bg-accent hover:bg-accent/85 text-cream px-10 py-4 text-sm tracking-wide uppercase font-medium transition-all"
-                    >
-                        Plan een Kennismaking
-                    </a>
-                </FadeIn>
+        {/* CTA Band */}
+        <section class="py-12 md:py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-primary rounded-2xl py-16 px-8 text-center">
+                    <FadeIn client:visible direction="up">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white">
+                            Geïnspireerd geraakt?
+                        </h2>
+                        <p class="text-white/80 text-lg mt-4">
+                            Neem contact op en vertel ons over uw droomtuin.
+                        </p>
+                        <a
+                            href="/contact/"
+                            class="inline-block bg-white text-primary px-8 py-3.5 rounded-lg font-medium mt-8 hover:bg-gray-100 transition-colors"
+                        >
+                            Plan een Kennismaking
+                        </a>
+                    </FadeIn>
+                </div>
             </div>
         </section>
     </main>

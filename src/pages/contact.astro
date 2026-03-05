@@ -1,318 +1,182 @@
 ---
-import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
-import FadeIn from "../components/ui/FadeIn";
-import { Phone, Mail, MapPin, MessageCircle } from "lucide-react";
-import contactImage from "../assets/images/tuinontwerp-en-advies.webp";
+import { Phone, Mail, MessageCircle, CheckCircle } from "lucide-react";
 ---
 
-<Layout title="Contact | Hoveniersbedrijf De Oude Stad" heroNav>
-    <main class="bg-cream min-h-screen">
-        {/* Hero-style header with image */}
-        <section class="relative grain" >
-            <div class="grid grid-cols-1 lg:grid-cols-2">
-                {/* Content side */}
-                <div class="bg-primary pt-36 pb-20 px-6 sm:px-10 lg:px-16 xl:px-24 relative z-10">
-                    <FadeIn client:visible>
-                        <div class="max-w-lg">
-                            <div class="flex items-center gap-4 mb-6">
-                                <div class="w-12 h-px bg-sage"></div>
-                                <span class="text-sage text-sm tracking-[0.2em] uppercase font-medium">Contact</span>
-                            </div>
-                            <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl text-cream mb-6">
-                                Neem Contact Op<span class="text-accent">.</span>
-                            </h1>
-                            <p class="text-lg text-cream/60 leading-relaxed mb-12">
-                                Bent u benieuwd naar de mogelijkheden voor uw tuin?
-                                Wij komen graag vrijblijvend langs voor een kennismaking.
-                            </p>
-
-                            {/* Quick contact options */}
-                            <div class="space-y-6">
-                                <a href="tel:0623571852" class="flex items-center gap-4 text-cream/80 hover:text-cream transition-colors group">
-                                    <div class="w-12 h-12 border border-cream/20 group-hover:border-accent flex items-center justify-center flex-shrink-0 transition-colors">
-                                        <Phone className="w-5 h-5 text-accent" />
-                                    </div>
-                                    <div>
-                                        <span class="block text-xs text-cream/40 tracking-[0.2em] uppercase mb-1">Bel ons</span>
-                                        <span class="text-lg font-serif">06 2357 1852</span>
-                                    </div>
-                                </a>
-                                <a href="mailto:yannick@knapgemaakt.nl" class="flex items-center gap-4 text-cream/80 hover:text-cream transition-colors group">
-                                    <div class="w-12 h-12 border border-cream/20 group-hover:border-accent flex items-center justify-center flex-shrink-0 transition-colors">
-                                        <Mail className="w-5 h-5 text-accent" />
-                                    </div>
-                                    <div>
-                                        <span class="block text-xs text-cream/40 tracking-[0.2em] uppercase mb-1">E-mail</span>
-                                        <span class="text-lg font-serif">yannick@knapgemaakt.nl</span>
-                                    </div>
-                                </a>
-                                <a href="https://wa.me/31623571852" target="_blank" class="flex items-center gap-4 text-cream/80 hover:text-cream transition-colors group">
-                                    <div class="w-12 h-12 border border-cream/20 group-hover:border-[#25D366] flex items-center justify-center flex-shrink-0 transition-colors">
-                                        <MessageCircle className="w-5 h-5 text-[#25D366]" />
-                                    </div>
-                                    <div>
-                                        <span class="block text-xs text-cream/40 tracking-[0.2em] uppercase mb-1">WhatsApp</span>
-                                        <span class="text-lg font-serif">Stuur een berichtje</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </FadeIn>
-                </div>
-
-                {/* Image side */}
-                <div class="relative h-72 lg:h-auto min-h-[300px]">
-                    <Image
-                        src={contactImage}
-                        alt="Hovenier geeft tuinadvies aan klant in een groene tuin"
-                        class="absolute inset-0 w-full h-full object-cover"
-                        widths={[640, 960, 1280]}
-                        sizes="(max-width: 1024px) 100vw, 50vw"
-                        loading="eager"
-                        decoding="async"
-                    />
-                </div>
+<Layout title="Contact | Groenrijk Hoveniers">
+    <main>
+        {/* Page header */}
+        <section class="bg-white py-16 md:py-20 pt-28 md:pt-36">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <span class="inline-block text-sm font-medium text-primary bg-primary/10 px-4 py-1.5 rounded-full mb-4">Neem contact op</span>
+                <h1 class="text-4xl md:text-5xl font-bold text-dark">Contact</h1>
+                <p class="text-gray-600 mt-4 text-lg max-w-xl mx-auto">
+                    Bent u benieuwd naar de mogelijkheden voor uw tuin? Wij komen graag vrijblijvend langs voor een kennismaking.
+                </p>
             </div>
         </section>
 
-        {/* Contact details + form */}
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
-            <div class="grid grid-cols-1 lg:grid-cols-5 gap-16 lg:gap-24">
-                {/* Left column - details */}
+        {/* Contact method cards */}
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <a href="tel:0623571852" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 text-center hover:shadow-md hover:border-primary/30 transition-all cursor-pointer">
+                    <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto">
+                        <Phone className="w-6 h-6 text-primary" />
+                    </div>
+                    <h3 class="font-bold text-dark mt-4">Bel ons</h3>
+                    <span class="text-gray-600 text-sm mt-1 block">06-2357 1852</span>
+                </a>
+                <a href="mailto:yannick@knapgemaakt.nl" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 text-center hover:shadow-md hover:border-primary/30 transition-all cursor-pointer">
+                    <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto">
+                        <Mail className="w-6 h-6 text-primary" />
+                    </div>
+                    <h3 class="font-bold text-dark mt-4">E-mail</h3>
+                    <span class="text-gray-600 text-sm mt-1 block">yannick@knapgemaakt.nl</span>
+                </a>
+                <a href="https://wa.me/31623571852" target="_blank" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 text-center hover:shadow-md hover:border-primary/30 transition-all cursor-pointer">
+                    <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto">
+                        <MessageCircle className="w-6 h-6 text-primary" />
+                    </div>
+                    <h3 class="font-bold text-dark mt-4">WhatsApp</h3>
+                    <span class="text-gray-600 text-sm mt-1 block">Stuur een bericht</span>
+                </a>
+            </div>
+        </section>
+
+        {/* Main content: sidebar + form */}
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 pb-20">
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-12">
+                {/* Left column */}
                 <div class="lg:col-span-2">
-                    <FadeIn client:visible delay={0.1}>
-                        <h2 class="font-serif text-2xl text-dark mb-10">
-                            Werkgebied
-                        </h2>
+                    <h2 class="text-xl font-bold text-dark">Werkgebied</h2>
+                    <p class="text-gray-600 mt-3">
+                        Wij zijn actief in Culemborg en omstreken, waaronder de Betuwe en het Rivierenland.
+                    </p>
+                    <p class="text-gray-600 mt-2">
+                        Culemborg, Tiel, Geldermalsen, Buren, Beusichem, Leerdam
+                    </p>
 
-                        <div class="space-y-8 mb-12">
-                            <div class="flex items-start gap-5">
-                                <div class="w-10 h-10 border border-sand flex items-center justify-center flex-shrink-0">
-                                    <MapPin className="w-4 h-4 text-accent" />
-                                </div>
-                                <div>
-                                    <span class="block text-xs text-bark tracking-[0.2em] uppercase mb-2">Regio</span>
-                                    <p class="text-dark font-serif text-lg">
-                                        Culemborg en omstreken
-                                    </p>
-                                    <p class="text-sm text-bark mt-1">
-                                        Betuwe, Rivierenland & omgeving
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Reassurance block */}
-                        <div class="border-t border-sand pt-10">
-                            <h3 class="font-serif text-xl text-dark mb-6">
-                                Wat kunt u verwachten?
-                            </h3>
-                            <ul class="space-y-4 text-bark">
-                                <li class="flex items-start gap-3">
-                                    <div class="w-1.5 h-1.5 bg-accent mt-2.5 flex-shrink-0"></div>
-                                    <span>Reactie binnen één werkdag</span>
-                                </li>
-                                <li class="flex items-start gap-3">
-                                    <div class="w-1.5 h-1.5 bg-accent mt-2.5 flex-shrink-0"></div>
-                                    <span>Vrijblijvend kennismakingsgesprek bij u thuis</span>
-                                </li>
-                                <li class="flex items-start gap-3">
-                                    <div class="w-1.5 h-1.5 bg-accent mt-2.5 flex-shrink-0"></div>
-                                    <span>Helder en transparant advies</span>
-                                </li>
-                                <li class="flex items-start gap-3">
-                                    <div class="w-1.5 h-1.5 bg-accent mt-2.5 flex-shrink-0"></div>
-                                    <span>Offerte op maat, zonder verplichtingen</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </FadeIn>
+                    <h2 class="text-xl font-bold text-dark mt-8">Wat kunt u verwachten?</h2>
+                    <ul class="mt-3 space-y-2">
+                        <li class="flex items-center gap-2 text-gray-600">
+                            <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                            <span>Reactie binnen 24 uur</span>
+                        </li>
+                        <li class="flex items-center gap-2 text-gray-600">
+                            <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                            <span>Gratis en vrijblijvend adviesgesprek</span>
+                        </li>
+                        <li class="flex items-center gap-2 text-gray-600">
+                            <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                            <span>Transparante offerte op maat</span>
+                        </li>
+                        <li class="flex items-center gap-2 text-gray-600">
+                            <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                            <span>Persoonlijke aanpak</span>
+                        </li>
+                    </ul>
                 </div>
 
-                {/* Right column - form */}
+                {/* Right column */}
                 <div class="lg:col-span-3">
-                    <FadeIn client:visible delay={0.2}>
-                        <div class="bg-white border border-sand p-8 md:p-12">
-                            <h2 class="font-serif text-2xl text-dark mb-2">
-                                Stuur een bericht
-                            </h2>
-                            <p class="text-bark mb-10">
-                                Vertel ons over uw tuinwensen en wij nemen zo snel mogelijk contact op.
-                            </p>
+                    <div id="form-card" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+                        <h2 class="text-2xl font-bold text-dark mb-6">Stuur ons een bericht</h2>
 
-                            <form id="contact-form" class="space-y-8">
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div>
-                                        <label
-                                            for="naam"
-                                            class="block text-xs text-bark tracking-[0.2em] uppercase mb-3"
-                                        >Naam</label>
-                                        <input
-                                            type="text"
-                                            id="naam"
-                                            name="naam"
-                                            class="w-full px-0 py-3 bg-transparent border-0 border-b border-sand focus:border-dark focus:ring-0 outline-none transition-colors text-dark placeholder:text-bark/50"
-                                            placeholder="Uw naam"
-                                            required
-                                        />
-                                    </div>
-                                    <div>
-                                        <label
-                                            for="telefoon"
-                                            class="block text-xs text-bark tracking-[0.2em] uppercase mb-3"
-                                        >Telefoonnummer</label>
-                                        <input
-                                            type="tel"
-                                            id="telefoon"
-                                            name="telefoon"
-                                            class="w-full px-0 py-3 bg-transparent border-0 border-b border-sand focus:border-dark focus:ring-0 outline-none transition-colors text-dark placeholder:text-bark/50"
-                                            placeholder="06 2357 1852"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <label
-                                        for="email"
-                                        class="block text-xs text-bark tracking-[0.2em] uppercase mb-3"
-                                    >E-mailadres</label>
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        name="email"
-                                        class="w-full px-0 py-3 bg-transparent border-0 border-b border-sand focus:border-dark focus:ring-0 outline-none transition-colors text-dark placeholder:text-bark/50"
-                                        placeholder="naam@voorbeeld.nl"
-                                        required
-                                    />
-                                </div>
-
-                                <div>
-                                    <label
-                                        for="onderwerp"
-                                        class="block text-xs text-bark tracking-[0.2em] uppercase mb-3"
-                                    >Waar gaat het over?</label>
-                                    <select
-                                        id="onderwerp"
-                                        name="onderwerp"
-                                        class="w-full px-0 py-3 bg-transparent border-0 border-b border-sand focus:border-dark focus:ring-0 outline-none transition-colors text-dark appearance-none cursor-pointer"
-                                    >
-                                        <option>Tuinontwerp & Advies</option>
-                                        <option>Tuinaanleg</option>
-                                        <option>Tuinonderhoud</option>
-                                        <option>Anders</option>
-                                    </select>
-                                </div>
-
-                                <div>
-                                    <label
-                                        for="adres"
-                                        class="block text-xs text-bark tracking-[0.2em] uppercase mb-3"
-                                    >Adres (optioneel)</label>
-                                    <input
-                                        type="text"
-                                        id="adres"
-                                        name="adres"
-                                        class="w-full px-0 py-3 bg-transparent border-0 border-b border-sand focus:border-dark focus:ring-0 outline-none transition-colors text-dark placeholder:text-bark/50"
-                                        placeholder="Straat, huisnummer, postcode"
-                                    />
-                                </div>
-
-                                <div>
-                                    <label
-                                        for="bericht"
-                                        class="block text-xs text-bark tracking-[0.2em] uppercase mb-3"
-                                    >Uw bericht</label>
-                                    <textarea
-                                        id="bericht"
-                                        name="bericht"
-                                        rows="5"
-                                        class="w-full px-0 py-3 bg-transparent border-0 border-b border-sand focus:border-dark focus:ring-0 outline-none transition-colors text-dark placeholder:text-bark/50 resize-none"
-                                        placeholder="Vertel ons kort over uw tuinwensen, de grootte van uw tuin, en wat u voor ogen heeft..."
-                                        required></textarea>
-                                </div>
-
-                                <div id="form-error" class="hidden text-red-600 text-sm"></div>
-
-                                <button
-                                    type="submit"
-                                    id="submit-btn"
-                                    class="w-full bg-dark hover:bg-dark/85 text-cream py-4 text-sm tracking-wide uppercase font-medium transition-all"
-                                >
-                                    Verstuur Bericht
-                                </button>
-                            </form>
-
-                            <!-- Success state -->
-                            <div id="form-success" class="hidden text-center py-12">
-                                <div class="w-16 h-16 mx-auto mb-6 border-2 border-accent flex items-center justify-center">
-                                    <svg class="w-8 h-8 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </div>
-                                <h3 class="font-serif text-2xl text-dark mb-3">Bericht verstuurd</h3>
-                                <p class="text-bark leading-relaxed max-w-sm mx-auto">
-                                    Bedankt voor uw aanvraag. U ontvangt direct een bevestiging per e-mail. We nemen binnen &eacute;&eacute;n werkdag contact met u op.
-                                </p>
+                        <form id="contact-form" action="/api/send-email/" method="POST" class="space-y-5">
+                            <div>
+                                <label for="naam" class="text-sm font-medium text-dark mb-1.5 block">Naam</label>
+                                <input
+                                    type="text"
+                                    id="naam"
+                                    name="naam"
+                                    required
+                                    class="w-full border border-gray-200 rounded-lg px-4 py-3 text-dark focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-colors"
+                                />
                             </div>
+                            <div>
+                                <label for="telefoon" class="text-sm font-medium text-dark mb-1.5 block">Telefoon</label>
+                                <input
+                                    type="tel"
+                                    id="telefoon"
+                                    name="telefoon"
+                                    class="w-full border border-gray-200 rounded-lg px-4 py-3 text-dark focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-colors"
+                                />
+                            </div>
+                            <div>
+                                <label for="email" class="text-sm font-medium text-dark mb-1.5 block">Email</label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    required
+                                    class="w-full border border-gray-200 rounded-lg px-4 py-3 text-dark focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-colors"
+                                />
+                            </div>
+                            <div>
+                                <label for="bericht" class="text-sm font-medium text-dark mb-1.5 block">Bericht</label>
+                                <textarea
+                                    id="bericht"
+                                    name="bericht"
+                                    rows="5"
+                                    required
+                                    class="w-full border border-gray-200 rounded-lg px-4 py-3 text-dark focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-colors resize-none"
+                                ></textarea>
+                            </div>
+
+                            <button
+                                type="submit"
+                                class="w-full bg-primary hover:bg-primary-light text-white rounded-lg py-3.5 font-medium transition-colors duration-200 mt-6 cursor-pointer"
+                            >
+                                Verstuur Bericht
+                            </button>
+                        </form>
+                    </div>
+
+                    {/* Success message */}
+                    <div id="success-message" class="hidden bg-primary/10 rounded-2xl p-8 text-center">
+                        <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                            <CheckCircle className="w-12 h-12 text-primary" />
                         </div>
-                    </FadeIn>
+                        <h3 class="text-2xl font-bold text-dark mb-2">Bedankt voor uw bericht!</h3>
+                        <p class="text-gray-600 mb-6">We nemen zo snel mogelijk contact met u op.</p>
+                        <a href="/" class="inline-block text-primary font-medium hover:underline">Terug naar home</a>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
     </main>
 </Layout>
 
 <script>
-    const form = document.getElementById("contact-form") as HTMLFormElement;
-    const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement;
-    const formError = document.getElementById("form-error") as HTMLDivElement;
-    const formSuccess = document.getElementById("form-success") as HTMLDivElement;
+    const form = document.getElementById('contact-form') as HTMLFormElement;
+    const successMessage = document.getElementById('success-message');
+    const formCard = document.getElementById('form-card');
 
-    form?.addEventListener("submit", async (e) => {
+    form?.addEventListener('submit', async (e) => {
         e.preventDefault();
-        formError.classList.add("hidden");
+        const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
         submitBtn.disabled = true;
-        submitBtn.textContent = "Versturen...";
-
-        const data = {
-            naam: (form.querySelector("#naam") as HTMLInputElement).value,
-            telefoon: (form.querySelector("#telefoon") as HTMLInputElement).value,
-            email: (form.querySelector("#email") as HTMLInputElement).value,
-            onderwerp: (form.querySelector("#onderwerp") as HTMLSelectElement).value,
-            adres: (form.querySelector("#adres") as HTMLInputElement).value,
-            bericht: (form.querySelector("#bericht") as HTMLTextAreaElement).value,
-        };
+        submitBtn.textContent = 'Versturen...';
 
         try {
-            const res = await fetch("/api/send-email/", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+            const response = await fetch('/api/send-email/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data),
             });
 
-            const text = await res.text();
-            let result;
-            try {
-                result = JSON.parse(text);
-            } catch {
-                throw new Error("Onverwacht serverantwoord. Probeer het later opnieuw.");
+            if (response.ok) {
+                formCard?.classList.add('hidden');
+                successMessage?.classList.remove('hidden');
+            } else {
+                throw new Error('Submission failed');
             }
-
-            if (!res.ok) {
-                throw new Error(result.error || "Versturen mislukt.");
-            }
-
-            form.classList.add("hidden");
-            formSuccess.classList.remove("hidden");
-        } catch (err) {
-            formError.textContent =
-                err instanceof Error
-                    ? err.message
-                    : "Er ging iets mis. Probeer het later opnieuw.";
-            formError.classList.remove("hidden");
+        } catch (error) {
             submitBtn.disabled = false;
-            submitBtn.textContent = "Verstuur Bericht";
+            submitBtn.textContent = 'Verstuur Bericht';
+            alert('Er is iets misgegaan. Probeer het opnieuw of neem telefonisch contact op.');
         }
     });
 </script>

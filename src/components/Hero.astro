@@ -1,95 +1,76 @@
 ---
 import { Image } from "astro:assets";
 import heroImage from "../assets/images/hero-garden.webp";
+import FadeIn from "./ui/FadeIn.tsx";
 ---
 
-<section
-    class="relative min-h-screen flex items-end overflow-hidden grain"
->
-    {/* Background Image Layer */}
-    <div class="absolute inset-0 z-0">
-        <Image
-            src={heroImage}
-            alt="Zonnige moderne tuin met weelderige beplanting in Culemborg"
-            class="w-full h-full object-cover object-center"
-            widths={[640, 960, 1280, 1920]}
-            sizes="100vw"
-            loading="eager"
-            fetchpriority="high"
-            decoding="async"
-        />
-        {/* Warm dark overlay with gradient - heavier at bottom for text readability */}
-        <div class="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/30 to-dark/10"></div>
-        {/* Warm color tint */}
-        <div class="absolute inset-0 bg-accent/5 mix-blend-multiply"></div>
-    </div>
+<section class="bg-white py-16 md:py-20 lg:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Left column — content */}
+            <FadeIn client:visible delay={0.1} direction="up">
+                <span class="inline-block bg-primary/10 text-primary rounded-full px-4 py-1.5 text-sm font-medium mb-6">
+                    Hovenier in de Betuwe
+                </span>
 
-    {/* Content Layer - LEFT aligned, bottom positioned */}
-    <div
-        class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-20 md:pb-28 pt-40"
-    >
-        <div class="max-w-3xl">
-            {/* Small label above heading */}
-            <p
-                class="text-accent text-sm tracking-[0.3em] uppercase font-medium mb-6 opacity-0 animate-fade-in-up"
-                style="animation-delay: 0.1s; animation-fill-mode: forwards;"
-            >
-                Hoveniersbedrijf Culemborg
-            </p>
+                <h1 class="text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-dark leading-tight">
+                    Een mooie tuin begint bij een goede hovenier
+                </h1>
 
-            <h1
-                class="font-serif text-5xl md:text-6xl lg:text-8xl text-cream mb-8 leading-[1.05] opacity-0 animate-fade-in-up"
-                style="animation-delay: 0.25s; animation-fill-mode: forwards;"
-            >
-                Uw Droomtuin,<br />
-                Vakkundig<br />
-                Aangelegd<span class="text-accent">.</span>
-            </h1>
+                <p class="text-lg text-gray-600 mt-6 leading-relaxed">
+                    Van tuinontwerp tot onderhoud. Wij maken van uw tuin een plek om van te genieten.
+                </p>
 
-            <p
-                class="text-lg md:text-xl text-cream/75 mb-12 max-w-xl leading-relaxed font-light opacity-0 animate-fade-in-up"
-                style="animation-delay: 0.45s; animation-fill-mode: forwards;"
-            >
-                Van ontwerp tot onderhoud. Wij realiseren tuinen waar u elk seizoen
-                van geniet.
-            </p>
+                <div class="mt-8 flex flex-col sm:flex-row gap-4">
+                    <a
+                        href="/contact/"
+                        class="bg-primary hover:bg-primary-light text-white rounded-lg px-6 py-3.5 font-medium transition-colors duration-200 text-center"
+                    >
+                        Gratis Offerte Aanvragen
+                    </a>
+                    <a
+                        href="/projecten/"
+                        class="border border-dark text-dark hover:bg-dark hover:text-white rounded-lg px-6 py-3.5 font-medium transition-colors duration-200 text-center"
+                    >
+                        Bekijk Onze Projecten
+                    </a>
+                </div>
 
-            <div
-                class="flex flex-col sm:flex-row items-start gap-4 opacity-0 animate-fade-in-up"
-                style="animation-delay: 0.6s; animation-fill-mode: forwards;"
-            >
-                <a
-                    href="/contact/"
-                    class="bg-accent hover:bg-accent/85 text-cream px-8 py-4 text-sm tracking-wide uppercase font-medium transition-all"
-                >
-                    Vrijblijvende Offerte
-                </a>
-                <a
-                    href="/projecten/"
-                    class="text-cream/80 hover:text-cream px-8 py-4 text-sm tracking-wide uppercase font-medium transition-all border border-cream/25 hover:border-cream/50"
-                >
-                    Bekijk Projecten &rarr;
-                </a>
-            </div>
-        </div>
+                <div class="mt-8 flex flex-wrap items-center gap-6 text-sm text-gray-600">
+                    {/* Google stars */}
+                    <div class="flex items-center gap-2">
+                        <div class="flex gap-0.5">
+                            {Array.from({ length: 5 }).map(() => (
+                                <svg class="w-4 h-4" viewBox="0 0 20 20" fill="#F59E0B" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg>
+                            ))}
+                        </div>
+                        <span>4.8 — 47 reviews</span>
+                    </div>
 
-        {/* Decorative bottom line with scroll hint */}
-        <div class="hidden md:flex items-center gap-6 mt-20 opacity-0 animate-fade-in-up" style="animation-delay: 0.8s; animation-fill-mode: forwards;">
-            <div class="w-12 h-px bg-cream/30"></div>
-            <span class="text-cream/40 text-xs tracking-[0.2em] uppercase">Scroll</span>
+                    <div class="hidden sm:block w-px h-5 bg-gray-300"></div>
+
+                    <span>15+ jaar ervaring</span>
+
+                    <div class="hidden sm:block w-px h-5 bg-gray-300"></div>
+
+                    <span>VHG Gecertificeerd</span>
+                </div>
+            </FadeIn>
+
+            {/* Right column — image */}
+            <FadeIn client:visible delay={0.3} direction="right">
+                <Image
+                    src={heroImage}
+                    alt="Zonnige moderne tuin met weelderige beplanting in de Betuwe"
+                    class="rounded-2xl object-cover w-full h-full max-h-[500px] lg:max-h-none"
+                    widths={[480, 768, 1024]}
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    loading="eager"
+                    fetchpriority="high"
+                />
+            </FadeIn>
         </div>
     </div>
 </section>
-
-<style>
-    @keyframes fade-in-up {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-</style>
