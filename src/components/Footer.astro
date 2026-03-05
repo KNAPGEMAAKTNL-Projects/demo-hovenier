@@ -19,20 +19,20 @@ const werkgebied = [
 ];
 ---
 
-<footer class="bg-dark pt-16 pb-8">
+<footer class="bg-gray border-t border-gray-200 pt-16 pb-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* 4-column grid */}
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
             {/* Column 1 - Brand */}
             <div>
-                <span class="text-white text-lg font-bold">Groenrijk Hoveniers</span>
-                <p class="text-gray-400 text-sm mt-3">
+                <span class="text-dark text-lg font-bold">Groenrijk Hoveniers</span>
+                <p class="text-gray-500 text-sm mt-3">
                     Uw hovenier in de Betuwe. Tuinontwerp, aanleg en onderhoud.
                 </p>
                 <div class="flex gap-4 mt-6">
-                    <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Facebook</a>
-                    <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Instagram</a>
-                    <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">LinkedIn</a>
+                    <a href="#" class="text-gray-400 hover:text-primary text-sm transition-colors">Facebook</a>
+                    <a href="#" class="text-gray-400 hover:text-primary text-sm transition-colors">Instagram</a>
+                    <a href="#" class="text-gray-400 hover:text-primary text-sm transition-colors">LinkedIn</a>
                 </div>
             </div>
 
@@ -45,7 +45,7 @@ const werkgebied = [
                             <li>
                                 <a
                                     href={link.href}
-                                    class="text-gray-400 hover:text-white transition-colors text-sm py-1 block"
+                                    class="text-gray-600 hover:text-primary transition-colors text-sm py-1 block"
                                 >
                                     {link.label}
                                 </a>
@@ -60,19 +60,19 @@ const werkgebied = [
                 <h3 class="text-xs tracking-widest uppercase text-gray-400 mb-4 font-medium">Contact</h3>
                 <ul class="space-y-3">
                     <li>
-                        <a href="tel:0612345678" class="flex items-center text-gray-400 hover:text-white transition-colors text-sm">
+                        <a href="tel:0623571852" class="flex items-center text-gray-600 hover:text-primary transition-colors text-sm">
                             <Phone className="w-4 h-4 text-primary mr-3 flex-shrink-0" />
-                            06-1234 5678
+                            06-2357 1852
                         </a>
                     </li>
                     <li>
-                        <a href="mailto:info@groenrijkhoveniers.nl" class="flex items-center text-gray-400 hover:text-white transition-colors text-sm">
+                        <a href="mailto:yannick@knapgemaakt.nl" class="flex items-center text-gray-600 hover:text-primary transition-colors text-sm">
                             <Mail className="w-4 h-4 text-primary mr-3 flex-shrink-0" />
-                            info@groenrijkhoveniers.nl
+                            yannick@knapgemaakt.nl
                         </a>
                     </li>
                     <li>
-                        <a href="https://wa.me/31612345678" class="flex items-center text-gray-400 hover:text-white transition-colors text-sm" target="_blank" rel="noopener noreferrer">
+                        <a href="https://wa.me/31623571852" class="flex items-center text-gray-600 hover:text-primary transition-colors text-sm" target="_blank" rel="noopener noreferrer">
                             <MessageCircle className="w-4 h-4 text-primary mr-3 flex-shrink-0" />
                             WhatsApp ons
                         </a>
@@ -89,7 +89,7 @@ const werkgebied = [
                             <li>
                                 <a
                                     href="#"
-                                    class="text-gray-400 hover:text-white transition-colors text-sm py-1 block"
+                                    class="text-gray-600 hover:text-primary transition-colors text-sm py-1 block"
                                 >
                                     {plaats}
                                 </a>
@@ -101,15 +101,15 @@ const werkgebied = [
         </div>
 
         {/* Bottom bar */}
-        <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <div class="border-t border-gray-200 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
             <p class="text-gray-400 text-xs">&copy; 2026 Groenrijk Hoveniers</p>
             <a
                 href="https://knapgemaakt.nl/"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-gray-400 hover:text-white text-xs mt-4 md:mt-0 transition-colors"
+                class="text-gray-400 hover:text-primary text-xs mt-4 md:mt-0 transition-colors"
             >
-                Website door KnapGemaakt.nl
+                Gemaakt door KNAP GEMAAKT.
             </a>
         </div>
     </div>
